@@ -1,11 +1,9 @@
-﻿using System.Security.Cryptography.X509Certificates;
+﻿
+using System.Security.Cryptography;
 
 namespace workshop.Main
 {
-    public class Person
-    {
-        public string Name { get; set; }
-    }
+   
     internal class Program
     {
         static void Main(string[] args)
@@ -131,13 +129,38 @@ namespace workshop.Main
 
 
 
+            //querying strings
+            Dictionary<string, int> MyFridge = new Dictionary<string, int>();
+            MyFridge.Add("Carrots", 5);
+            MyFridge.Add("Potatoes", 8);
+            MyFridge.Add("Peppers", 5);
+            MyFridge.Add("Beetroot", 4);
+            MyFridge.Add("Cucumber", 2);
+            MyFridge.Add("Broccoli", 1);
+            MyFridge.Add("Onions", 8);
+            MyFridge.Add("Shallots", 8);
 
 
 
+            //lamda
+            var lamda_low_veg = MyFridge.Where(x => x.Value <= 2).ToList();
+            
+            //linq
+            var linq_low_veg = (from item in MyFridge where item.Value <= 2 select item).ToList();
 
 
+            //lamda returing single item
+            var lamda_danger = MyFridge.First(x => x.Key == "Carrots");  //FYI if it can't find a carrot throws exception (bad!)
+            var lamda_carrot = MyFridge.Where(x => x.Key == "Carrots").FirstOrDefault();
 
+            //linq carrot
+            var linq_lamda_carrot = (from item in MyFridge where item.Key == "Carrrot" select item);
 
+            //lamda
+            var lamda_p_items = MyFridge.Where(item => item.Key.ToLower().StartsWith("p")).ToList();
+
+            //linq
+            var linq_p_items = (from item in MyFridge where item.Key.ToLower().StartsWith("p") select item).ToList();
             Console.ReadLine();
         }
     }
