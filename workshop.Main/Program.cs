@@ -130,37 +130,40 @@ namespace workshop.Main
 
 
             //querying strings
-            Dictionary<string, int> MyFridge = new Dictionary<string, int>();
-            MyFridge.Add("Carrots", 5);
-            MyFridge.Add("Potatoes", 8);
-            MyFridge.Add("Peppers", 5);
-            MyFridge.Add("Beetroot", 4);
-            MyFridge.Add("Cucumber", 2);
-            MyFridge.Add("Broccoli", 1);
-            MyFridge.Add("Onions", 8);
-            MyFridge.Add("Shallots", 8);
+            Dictionary<string, int> Fridge = new Dictionary<string, int>();
+            Fridge.Add("Carrots", 5);
+            Fridge.Add("Potatoes", 8);
+            Fridge.Add("Peppers", 5);
+            Fridge.Add("Beetroot", 4);
+            Fridge.Add("Cucumber", 2);
+            Fridge.Add("Broccoli", 1);
+            Fridge.Add("Onions", 8);
+            Fridge.Add("Shallots", 8);
 
 
 
             //lamda
-            var lamda_low_veg = MyFridge.Where(x => x.Value <= 2).ToList();
+            var lamda_low_veg = Fridge.Where(item => item.Value <= 2).ToList();
             
             //linq
-            var linq_low_veg = (from item in MyFridge where item.Value <= 2 select item).ToList();
+            var linq_low_veg = (from item in Fridge where item.Value <= 2 select item).ToList();
 
 
             //lamda returing single item
-            var lamda_danger = MyFridge.First(x => x.Key == "Carrots");  //FYI if it can't find a carrot throws exception (bad!)
-            var lamda_carrot = MyFridge.Where(x => x.Key == "Carrots").FirstOrDefault();
+            var lamda_danger = Fridge.First(item => item.Key == "Carrots");  //FYI if it can't find a carrot throws exception (bad!)
+            var lamda_carrot = Fridge.Where(item => item.Key == "Carrots").FirstOrDefault();
 
             //linq carrot
-            var linq_lamda_carrot = (from item in MyFridge where item.Key == "Carrrot" select item);
+            var linq_lamda_carrot = (from item in Fridge where item.Key == "Carrrot" select item);
 
             //lamda
-            var lamda_p_items = MyFridge.Where(item => item.Key.ToLower().StartsWith("p")).ToList();
+            var lamda_p_items = Fridge.Where(item => item.Key.ToLower().StartsWith("p")).ToList();
 
             //linq
-            var linq_p_items = (from item in MyFridge where item.Key.ToLower().StartsWith("p") select item).ToList();
+            var linq_p_items = (from item in Fridge where item.Key.ToLower().StartsWith("p") select item).ToList();
+            
+            
+            
             Console.ReadLine();
         }
     }
